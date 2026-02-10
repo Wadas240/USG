@@ -1,0 +1,264 @@
+:root {
+  /* Survival Color Palette */
+  --bg-main: #0c0a09; /* สีดำถ่าน */
+  --bg-secondary: #1c1917; /* สีเทาเข้มเกือบดำ */
+  --card-bg: #292524; /* สีพื้นหลังการ์ด */
+  
+  /* Accent Colors: สีสนิม / ส้มไหม้ */
+  --accent: #d97706; 
+  --accent-hover: #b45309;
+  --accent-glow: rgba(217, 119, 6, 0.25);
+
+  /* Text Colors */
+  --text-primary: #e7e5e4; /* สีขาวหม่น */
+  --text-muted: #a8a29e; /* สีเทาหม่น */
+  
+  /* Borders & Shadows */
+  --border-color: #44403c;
+  --shadow-hard: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  
+  --radius-md: 8px; /* ลดความโค้งมนลงให้ดูแข็งขึ้น */
+}
+
+/* เพิ่ม Texture แบบ Noise จางๆ ให้พื้นหลังดูดิบขึ้น */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* อนิเมชั่นแบบช้าๆ หนักๆ */
+@keyframes fadeUpHeavy {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* ถ้าอยากได้ฟอนต์เท่ๆ แนะนำ 'Oswald' สำหรับหัวข้อ และ 'Kanit' สำหรับเนื้อหา */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  padding: 80px 20px 100px;
+  background: linear-gradient(to bottom, #000000, var(--bg-secondary));
+  border-bottom: 3px solid var(--accent-hover);
+  overflow: hidden;
+}
+
+/* สร้างแสงสลัวๆ สีส้มสนิม */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, var(--accent-glow), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeUpHeavy 1s ease-out;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 0 0 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  font-weight: 800;
+}
+
+.hero p {
+  margin: 0 0 30px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ปุ่มสไตล์ Survival */
+.btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background-color: var(--accent);
+  color: #000;
+  text-decoration: none;
+  border-radius: 4px; /* ขอบเหลี่ยมขึ้น */
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid var(--accent-hover);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-hard);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+.btn-play:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(217, 119, 6, 0.3);
+}
+
+.btn-play:active {
+  transform: translateY(1px);
+}
+
+/* --- Main Content --- */
+.container {
+  max-width: 1080px;
+  margin: -50px auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Intro Section - ทำให้ดูเหมือนแผ่นป้ายโลหะหรือคอนกรีต */
+.intro {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 25px 30px;
+  box-shadow: var(--shadow-hard);
+  border: 2px solid var(--border-color);
+  margin-bottom: 40px;
+  animation: fadeUpHeavy 0.8s ease-out 0.2s both;
+  border-left: 5px solid var(--accent); /* แถบสีด้านซ้าย */
+}
+
+.intro h2 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* --- Game Grid & Cards --- */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.game-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-hard);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeUpHeavy 0.8s ease-out both;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* ลบอนิเมชั่นเด้งๆ ออก เหลือแค่ขยับนิดหน่อยตอนชี้ */
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.game-card:nth-child(1) { animation-delay: 0.3s; }
+.game-card:nth-child(2) { animation-delay: 0.4s; }
+.game-card:nth-child(3) { animation-delay: 0.5s; }
+
+.game-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.game-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* กรอบวิดีโอ */
+.video-wrapper {
+  position: relative;
+  margin-top: auto; /* ดันวิดีโอไปล่างสุดของการ์ด */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+  border: 2px solid var(--border-color);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8); /* เงาด้านใน */
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper:hover {
+    border-color: var(--accent);
+}
+
+.video-wrapper video,
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .container {
+    margin-top: -30px;
+  }
+
+  .game-grid {
+      grid-template-columns: 1fr; /* มือถือให้เรียงเดี่ยว */
+  }
+}
