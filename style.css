@@ -262,3 +262,59 @@ body {
       grid-template-columns: 1fr; /* มือถือให้เรียงเดี่ยว */
   }
 }
+
+/* =========================================
+   ระบบสลับภาษา (Language Switcher)
+   ========================================= */
+
+/* ค่าเริ่มต้น (ภาษาไทย): ซ่อนภาษาอังกฤษ */
+body:not(.en-mode) .en-text {
+  display: none !important;
+}
+
+/* เมื่อเป็นโหมดภาษาอังกฤษ: ซ่อนภาษาไทย */
+body.en-mode .th-text {
+  display: none !important;
+}
+
+/* กล่องปุ่มกดมุมขวาบน */
+.lang-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 5px;
+  background-color: var(--bg-secondary);
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-hard);
+}
+
+/* ดีไซน์ปุ่มกด */
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* สไตล์เมื่อเอาเมาส์ชี้ */
+.lang-btn:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* สไตล์ปุ่มของภาษาที่กำลังเลือกอยู่ (Active) */
+.lang-btn.active {
+  background-color: var(--accent);
+  color: #000;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
