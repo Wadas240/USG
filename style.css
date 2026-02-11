@@ -318,3 +318,60 @@ body.en-mode .th-text {
   color: #000;
   box-shadow: 0 0 10px var(--accent-glow);
 }
+/* =========================================
+   ระบบ Roadmap ขั้นตอนการพัฒนา
+   ========================================= */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  padding: 15px;
+  background: #000;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.roadmap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.roadmap-item:hover {
+  background: rgba(217, 119, 6, 0.1);
+  transform: translateX(4px);
+  border-color: var(--accent-hover);
+}
+
+.step-num {
+  color: var(--accent);
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ตกแต่งแถบเลื่อน Scrollbar ให้เข้ากับธีม */
+.roadmap-grid::-webkit-scrollbar {
+  width: 8px;
+}
+.roadmap-grid::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-radius: 4px;
+}
+.roadmap-grid::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.roadmap-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
